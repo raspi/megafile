@@ -1,0 +1,2 @@
+# megafile
+MegaFile (.MEG) reader
