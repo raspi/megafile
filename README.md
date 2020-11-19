@@ -5,7 +5,7 @@ File format information from official Electronic Arts Command & Conquer Remaster
 
 
 1. Buy Command & Conquer™ Remastered Collection
-1. Extract files
+1. Extract music files from `MUSIC.MEG`
 1. 🎶🤘😎🤘🎶
 
 # Extract files:
@@ -220,3 +220,11 @@ file #203(idx:37)/203: data/audio/music/rac_mus_mud_retaliation_remix.wav 346353
 Convert all to FLAC:
 
     % find . -iname "*.wav" -exec ffmpeg -hide_banner -i "{}" "{}.flac" \;
+
+# Build executable:
+
+    make
+
+# Release:
+
+    make release
