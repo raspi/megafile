@@ -47,12 +47,8 @@ upx-pack:
 	@upx $(UPXFLAGS) ./bin/linux-arm/${APPNAME}
 	@upx $(UPXFLAGS) ./bin/windows-amd64/${APPNAME}.exe
 
-release: linux-build darwin-build windows-build upx-pack compress-everything shasums release-ldistros
+release: linux-build darwin-build windows-build upx-pack compress-everything shasums
 	@echo "release done..."
-
-# Linux distributions
-release-ldistros: ldistro-arch
-	@echo "Linux distros release done..."
 
 shasums:
 	@echo "Checksumming..."
