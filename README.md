@@ -1,7 +1,7 @@
 # megafile
 MegaFile (.MEG) reader.
 
-File format information got from official Electronic Arts Command & Conquer Remastered Collection source code at https://github.com/electronicarts/CnC_Remastered_Collection
+File format information from official Electronic Arts Command & Conquer Remastered Collection source code at https://github.com/electronicarts/CnC_Remastered_Collection
 
 
 1. Buy Command & Conquer™ Remastered Collection
