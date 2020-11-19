@@ -76,7 +76,7 @@ func (mf *MegaFileReader) readHeader() {
 	}
 
 	if mf.header.Flags != MagicFlag {
-		panic(fmt.Errorf(`Invalid flags: %[1]x %[1]b`, mf.header.Flags))
+		panic(fmt.Errorf(`Invalid flags: %[1]x %[1]b expected %[2]x %[2]b`, mf.header.Flags, MagicFlag))
 	}
 }
 
@@ -134,15 +134,15 @@ func (mf *MegaFileReader) Close() {
 }
 
 // Extract a file
-func (mf *MegaFileReader) Extract(src File) error {
+func (mf *MegaFileReader) Extract(src File, extractionDir string) (saveName string, err error) {
 	// Seek to position where data begins
 	offset, err := mf.r.Seek(int64(src.StartOffset), io.SeekStart)
 	if err != nil {
-		return err
+		return ``, err
 	}
 
 	if offset != int64(src.StartOffset) {
-		return fmt.Errorf(`At wrong offset %d, expected %d`, offset, src.StartOffset)
+		return ``, fmt.Errorf(`At wrong offset %d, expected %d`, offset, src.StartOffset)
 	}
 
 	// Create a buffer for data
@@ -150,31 +150,43 @@ func (mf *MegaFileReader) Extract(src File) error {
 
 	_, err = mf.r.Read(buffer)
 	if err != nil {
-		return err
+		return ``, err
 	}
 
 	// Write to temporary file
-	f, err := ioutil.TempFile(`.`, `data-`)
+	err = os.MkdirAll(extractionDir, os.ModePerm)
 	if err != nil {
-		return err
+		return ``, err
+	}
+	f, err := ioutil.TempFile(extractionDir, `extracted-`)
+	if err != nil {
+		return ``, err
 	}
 
 	// Write contents to file
 	_, err = f.Write(buffer)
 	if err != nil {
-		return err
+		return ``, err
 	}
 
 	err = f.Close()
 	if err != nil {
-		return err
+		return ``, err
 	}
+
+	newPath := path.Join(extractionDir, src.Path)
+	err = os.MkdirAll(newPath, os.ModePerm)
+	if err != nil {
+		return ``, err
+	}
+
+	newFilePath := path.Join(newPath, src.Name)
 
 	// Rename temporary file to proper filename
-	err = os.Rename(f.Name(), src.Name)
+	err = os.Rename(f.Name(), newFilePath)
 	if err != nil {
-		return err
+		return ``, err
 	}
 
-	return nil
+	return newFilePath, nil
 }

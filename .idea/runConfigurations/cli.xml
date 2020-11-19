@@ -3,6 +3,7 @@
     <module name="megafile" />
     <working_directory value="$PROJECT_DIR$" />
     <go_parameters value="-i" />
+    <parameters value="-x $USER_HOME$/Games/steamapps/common/CnCRemastered/Data/MUSIC.MEG" />
     <kind value="DIRECTORY" />
     <filePath value="$PROJECT_DIR$" />
     <package value="github.com/raspi/megafile" />
