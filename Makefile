@@ -70,7 +70,7 @@ compress-darwin:
 	  echo "Darwin tar... $$arch"; \
 	  cp -v "$(PWD)/bin/darwin-$$arch/${APPNAME}" "$(RELEASETMPAPPDIR)/bin"; \
 	  cd "$(RELEASETMPDIR)"; \
-	  tar --owner=0 --group=0 -zcvf "$(PWD)/release/${VERSION}/$(APPANDVER)-darwin-$$arch.tar.gz" . ; \
+	  tar --numeric-owner --owner=0 --group=0 -zcvf "$(PWD)/release/${VERSION}/$(APPANDVER)-darwin-$$arch.tar.gz" . ; \
 	  rm "$(RELEASETMPAPPDIR)/bin/${APPNAME}"; \
 	done
 
@@ -91,7 +91,7 @@ compress-windows:
 	done
 
 # Move all to temporary directory and compress with common files
-compress-everything: copycommon compress-linux compress-windows
+compress-everything: copycommon compress-linux compress-darwin compress-windows
 	@echo "$@ ..."
 	rm -rf "$(RELEASETMPDIR)/*"
 
