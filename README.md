@@ -5,7 +5,7 @@ File format information from official Electronic Arts Command & Conquer Remaster
 
 
 1. Buy Command & Conquer™ Remastered Collection
-1. Extract files
+1. Extract music files from `MUSIC.MEG`
 1. 🎶🤘😎🤘🎶
 
 # Extract files:
