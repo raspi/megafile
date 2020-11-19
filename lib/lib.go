@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-const MagicFlag = 0xFFFFFFFF
+const MagicFlag = uint32(0xFFFFFFFF)
 
 // File header
 type header struct {
