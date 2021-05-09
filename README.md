@@ -1,4 +1,9 @@
 # megafile
+
+![GitHub All Releases](https://img.shields.io/github/downloads/raspi/megafile/total?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/raspi/megafile?style=for-the-badge)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/raspi/megafile?style=for-the-badge)
+
 MegaFile (.MEG) reader.
 
 File format information from [OpenRA](https://github.com/OpenRA/OpenRA) and [official Electronic Arts Command & Conquer Remastered Collection source code](https://github.com/electronicarts/CnC_Remastered_Collection)
